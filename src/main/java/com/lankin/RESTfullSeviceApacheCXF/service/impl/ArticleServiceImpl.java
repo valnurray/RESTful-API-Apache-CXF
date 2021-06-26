@@ -4,6 +4,7 @@ import com.lankin.RESTfullSeviceApacheCXF.exception.ResourceNotFoundException;
 import com.lankin.RESTfullSeviceApacheCXF.model.Article;
 import com.lankin.RESTfullSeviceApacheCXF.repository.ArticleRepository;
 import com.lankin.RESTfullSeviceApacheCXF.service.ArticleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,12 +22,16 @@ public class ArticleServiceImpl implements ArticleService {
 
     private ArticleRepository articleRepository;
 
+    public ArticleServiceImpl(){
+
+    }
     /**
      * @Autowired !!!!
      * Starting with Spring 4.3, if a Class, which is configured as a Spring bean,
      * has only one constructor, the @Autowired annotation can be omitted
      * and Spring will use that constructor and inject all necessary dependencies
      */
+    @Autowired
     public ArticleServiceImpl(ArticleRepository articleRepository) {
         this.articleRepository = articleRepository;
     }

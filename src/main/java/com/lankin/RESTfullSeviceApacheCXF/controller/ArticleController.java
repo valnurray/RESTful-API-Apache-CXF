@@ -3,14 +3,12 @@ package com.lankin.RESTfullSeviceApacheCXF.controller;
 import com.lankin.RESTfullSeviceApacheCXF.model.Article;
 import com.lankin.RESTfullSeviceApacheCXF.service.ArticleService;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
-@Path("/hello")
+@Path("/article")
 public class ArticleController {
 
     private ArticleService articleService;
@@ -24,7 +22,13 @@ public class ArticleController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response createCustomer(Article article) {
         return Response.ok(articleService.saveArticle(article)).build();
-//        return  articleService.saveArticle(article);
+
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Article> getCustomers() {
+        return articleService.getAllArticles();
     }
 
 }
