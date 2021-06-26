@@ -57,6 +57,13 @@
 			<version>2.3.1</version>
 		</dependency>
 
+		<!-- NOT SURE-->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-jaxrs</artifactId>
+			<version>1.9.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

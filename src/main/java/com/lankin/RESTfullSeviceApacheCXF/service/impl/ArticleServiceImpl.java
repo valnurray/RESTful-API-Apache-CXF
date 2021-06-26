@@ -3,11 +3,14 @@ package com.lankin.RESTfullSeviceApacheCXF.service.impl;
 import com.lankin.RESTfullSeviceApacheCXF.exception.ResourceNotFoundException;
 import com.lankin.RESTfullSeviceApacheCXF.model.Article;
 import com.lankin.RESTfullSeviceApacheCXF.repository.ArticleRepository;
+import com.lankin.RESTfullSeviceApacheCXF.service.ArticleREST;
 import com.lankin.RESTfullSeviceApacheCXF.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.ws.rs.core.Response;
+import javax.ws.rs.ext.ParamConverter;
 import java.util.List;
 
 /**
@@ -19,10 +22,18 @@ import java.util.List;
  *
  */
 @Service
-public class ArticleServiceImpl implements ArticleService {
+public class ArticleServiceImpl implements ArticleService, ArticleREST {
 
     private ArticleRepository articleRepository;
     private ArticleService articleService;
+
+    @Autowired
+    @Lazy
+    public ArticleServiceImpl(ArticleRepository articleRepository, ArticleService articleService){
+        this.articleService = articleService;
+        this.articleRepository = articleRepository;
+
+    }
 
 //    /**
 //     * @Autowired !!!!
@@ -106,7 +117,22 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<Article> getCustomers() {
+    public List<Article> getArticles() {
         return articleService.getAllArticles();
     }
+
+    @Override
+    public Article getArticle(long id) {
+        return articleService.getArticleById(id);
+    }
+//
+//    @Override
+//    public Response createArticle(Article article) {
+//        return Response.ok(articleService.saveArticle(article)).build();
+//    }
+//
+//    @Override
+//    public List<Article> getCustomers() {
+//        return articleService.getAllArticles();
+//    }
 }

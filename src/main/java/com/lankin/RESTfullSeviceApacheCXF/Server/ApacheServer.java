@@ -15,6 +15,8 @@ import org.springframework.context.annotation.Bean;
 import java.util.Arrays;
 
 public class ApacheServer {
+    private ArticleRepository articleRepository;
+    private ArticleService articleService;
 
     @Autowired
     private Bus bus;
@@ -24,7 +26,7 @@ public class ApacheServer {
         JAXRSServerFactoryBean endpoint = new JAXRSServerFactoryBean();
         endpoint.setBus(bus);
         endpoint.setAddress("/");
-        endpoint.setServiceBeans(Arrays.<Object>asList( new ArticleServiceImpl()));
+        endpoint.setServiceBeans(Arrays.<Object>asList( new ArticleServiceImpl(articleRepository, articleService)));
         return endpoint.create();
     }
 }
