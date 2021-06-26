@@ -3,6 +3,7 @@ package com.lankin.RESTfullSeviceApacheCXF.Server;
 import com.lankin.RESTfullSeviceApacheCXF.controller.ArticleController;
 import com.lankin.RESTfullSeviceApacheCXF.model.Article;
 import com.lankin.RESTfullSeviceApacheCXF.repository.ArticleRepository;
+import com.lankin.RESTfullSeviceApacheCXF.service.ArticleService;
 import com.lankin.RESTfullSeviceApacheCXF.service.impl.ArticleServiceImpl;
 import org.apache.cxf.Bus;
 import org.apache.cxf.endpoint.Server;

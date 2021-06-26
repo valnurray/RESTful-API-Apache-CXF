@@ -7,6 +7,7 @@ import com.lankin.RESTfullSeviceApacheCXF.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
@@ -21,20 +22,17 @@ import java.util.List;
 public class ArticleServiceImpl implements ArticleService {
 
     private ArticleRepository articleRepository;
+    private ArticleService articleService;
 
-    public ArticleServiceImpl(){
-
-    }
-    /**
-     * @Autowired !!!!
-     * Starting with Spring 4.3, if a Class, which is configured as a Spring bean,
-     * has only one constructor, the @Autowired annotation can be omitted
-     * and Spring will use that constructor and inject all necessary dependencies
-     */
-    @Autowired
-    public ArticleServiceImpl(ArticleRepository articleRepository) {
-        this.articleRepository = articleRepository;
-    }
+//    /**
+//     * @Autowired !!!!
+//     * Starting with Spring 4.3, if a Class, which is configured as a Spring bean,
+//     * has only one constructor, the @Autowired annotation can be omitted
+//     * and Spring will use that constructor and inject all necessary dependencies
+//     */
+//    public ArticleServiceImpl(ArticleRepository articleRepository) {
+//        this.articleRepository = articleRepository;
+//    }
 
     /**
      * save new article in DB
@@ -100,5 +98,15 @@ public class ArticleServiceImpl implements ArticleService {
         articleRepository.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("article", "id", id));
         articleRepository.deleteById(id);
+    }
+
+    @Override
+    public Response createArticle(Article article) {
+        return Response.ok(articleService.saveArticle(article)).build();
+    }
+
+    @Override
+    public List<Article> getCustomers() {
+        return articleService.getAllArticles();
     }
 }
