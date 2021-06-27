@@ -131,6 +131,12 @@ public class ArticleServiceImpl implements ArticleService, ArticleREST {
         articleService.deleteArticle(id);
         return Response.ok("Article with id - " + id + " was Deleted").build();
     }
+
+    @Override
+    public Response updateArticleByID(long id, Article article) {
+        articleService.updateArticle(article, id);
+        return Response.ok(article + "was updated").build();
+    }
 //
 //    @Override
 //    public Response createArticle(Article article) {

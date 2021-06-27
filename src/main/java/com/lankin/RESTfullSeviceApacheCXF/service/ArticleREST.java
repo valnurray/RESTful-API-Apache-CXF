@@ -32,5 +32,10 @@ public interface ArticleREST {
     @Produces({"application/xml","application/json"})
     Response deleteArticleByID(@PathParam("id") long id);
 
+    @PUT
+    @Path("{id}")
+    @Consumes({"application/xml","application/json","application/x-www-form-urlencoded"})
+    @Produces({"application/xml","application/json"})
+    Response updateArticleByID(@PathParam("id") long id, Article article);
 
 }
