@@ -113,7 +113,8 @@ public class ArticleServiceImpl implements ArticleService, ArticleREST {
 
     @Override
     public Response createArticle(Article article) {
-        return Response.ok(articleService.saveArticle(article)).build();
+        articleService.saveArticle(article);
+        return Response.ok(article + "Article was created").build();
     }
 
     @Override
