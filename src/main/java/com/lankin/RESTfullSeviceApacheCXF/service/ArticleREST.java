@@ -12,21 +12,25 @@ import java.util.List;
 public interface ArticleREST {
 
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({"application/xml","application/json"})
+//    @Consumes("application/xml")
+    @Consumes({"application/xml","application/json","application/x-www-form-urlencoded"})
     Response createArticle(Article article);
 
     @GET
-    @Produces("application/xml")
+    @Produces({"application/xml","application/json"})
     List<Article> getArticles() ;
 
     @GET
     @Path("{id}")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({"application/xml","application/json"})
     Article getArticle(@PathParam("id") long id);
 
-//    public Article getArticle(@PathParam("id") String id) {
-//        return dataService.getCustomerById(id);
-//    }
+    @DELETE
+    @Path("{id}")
+    @Consumes({"application/xml","application/json","application/x-www-form-urlencoded"})
+    @Produces({"application/xml","application/json"})
+    Response deleteArticleByID(@PathParam("id") long id);
+
 
 }
