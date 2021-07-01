@@ -2,6 +2,7 @@ package com.lankin.RESTfullSeviceApacheCXF.service.impl;
 
 
 import com.lankin.RESTfullSeviceApacheCXF.exception.ResourceNotFoundException;
+import com.lankin.RESTfullSeviceApacheCXF.exception.ResourceNotFoundExceptionMapper;
 import com.lankin.RESTfullSeviceApacheCXF.model.Article;
 import com.lankin.RESTfullSeviceApacheCXF.repository.ArticleRepository;
 import com.lankin.RESTfullSeviceApacheCXF.service.ArticleService;
@@ -55,15 +56,13 @@ public class ArticleServiceImpl implements ArticleService{
 
     @Override
     public Article getArticle(long id) {
-        return articleRepository.findById(id).orElseThrow(() ->
-                new ResourceNotFoundException("article", "id", id));
+        return articleRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
     }
 
     @Override
     public Response deleteArticleByID(long id) {
         //we need to check whether Article with given id is exist in DB or not
-        articleRepository.findById(id).orElseThrow(() ->
-                new ResourceNotFoundException("article", "id", id));
+        articleRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
         articleRepository.deleteById(id);
         return Response.ok("Article with id - " + id + " was Deleted").build();
     }
@@ -71,8 +70,7 @@ public class ArticleServiceImpl implements ArticleService{
     @Override
     public Response updateArticleByID(long id, Article article) {
         //we need to check whether Article with given id is exist in DB or not
-        Article existingArticle = articleRepository.findById(id).orElseThrow(() ->
-                new ResourceNotFoundException("article", "id", id));
+        Article existingArticle = articleRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
         //change parameters
         existingArticle.setAuthor(article.getAuthor());
         existingArticle.setBody(article.getBody());
