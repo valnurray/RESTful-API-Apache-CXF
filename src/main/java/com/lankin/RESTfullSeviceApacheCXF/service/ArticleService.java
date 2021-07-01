@@ -4,6 +4,7 @@ import com.lankin.RESTfullSeviceApacheCXF.model.Article;
 
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
@@ -20,29 +21,31 @@ import java.util.List;
 public interface ArticleService {
 
     @POST
-    @Produces({"application/xml","application/json"})
-    @Consumes({"application/xml","application/json","application/x-www-form-urlencoded"})
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     Response createArticle(Article article);
 
     @GET
-    @Produces({"application/xml","application/json"})
+    @Produces(MediaType.APPLICATION_JSON)
     List<Article> getArticles() ;
 
     @GET
     @Path("{id}")
-    @Produces({"application/xml","application/json"})
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     Article getArticle(@PathParam("id") long id);
+
 
     @DELETE
     @Path("{id}")
-    @Consumes({"application/xml","application/json","application/x-www-form-urlencoded"})
-    @Produces({"application/xml","application/json"})
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     Response deleteArticleByID(@PathParam("id") long id);
 
     @PUT
     @Path("{id}")
-    @Consumes({"application/xml","application/json","application/x-www-form-urlencoded"})
-    @Produces({"application/xml","application/json"})
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     Response updateArticleByID(@PathParam("id") long id, Article article);
 
 

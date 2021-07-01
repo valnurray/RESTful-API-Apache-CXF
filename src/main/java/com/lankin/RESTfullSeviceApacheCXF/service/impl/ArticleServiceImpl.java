@@ -21,7 +21,6 @@ import java.util.List;
  * @version 1.0
  *
  */
-//@AllArgsConstructor
 @Service
 public class ArticleServiceImpl implements ArticleService{
 
@@ -52,6 +51,7 @@ public class ArticleServiceImpl implements ArticleService{
     public List<Article> getArticles() {
         return articleRepository.findAll();
     }
+
 
     @Override
     public Article getArticle(long id) {
