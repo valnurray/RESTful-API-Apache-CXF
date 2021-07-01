@@ -12,36 +12,36 @@ import java.io.Serializable;
  *
  */
 
-public class ResourceNotFoundException extends RuntimeException implements Serializable {
+public class ResourceNotFoundException extends RuntimeException {
 
-    private static final long serialVersionUID = 1L;
-    private String resourceName;
-    private String fieldName;
-    private Object fieldValue;
-
-    /**
-     * handler for exception
-     *
-     * @param resourceName Entity name
-     * @param fieldName    Entity id
-     * @param fieldValue   Object to return
-     */
-    public ResourceNotFoundException(String resourceName, String fieldName, Object fieldValue) {
-        super(String.format("%s not found with %s : '%s'", resourceName, fieldName, fieldValue));
-        this.resourceName = resourceName;
-        this.fieldName = fieldName;
-        this.fieldValue = fieldValue;
-    }
-
-    public String getResourceName() {
-        return resourceName;
-    }
-
-    public String getFieldName() {
-        return fieldName;
-    }
-
-    public Object getFieldValue() {
-        return fieldValue;
-    }
+//    private static final long serialVersionUID = 1L;
+//    private String resourceName;
+//    private String fieldName;
+//    private Object fieldValue;
+//
+//    /**
+//     * handler for exception
+//     *
+//     * @param resourceName Entity name
+//     * @param fieldName    Entity id
+//     * @param fieldValue   Object to return
+//     */
+//    public ResourceNotFoundException(String resourceName, String fieldName, Object fieldValue) {
+//        super(String.format("%s not found with %s : '%s'", resourceName, fieldName, fieldValue));
+//        this.resourceName = resourceName;
+//        this.fieldName = fieldName;
+//        this.fieldValue = fieldValue;
+//    }
+//
+//    public String getResourceName() {
+//        return resourceName;
+//    }
+//
+//    public String getFieldName() {
+//        return fieldName;
+//    }
+//
+//    public Object getFieldValue() {
+//        return fieldValue;
+//    }
 }
