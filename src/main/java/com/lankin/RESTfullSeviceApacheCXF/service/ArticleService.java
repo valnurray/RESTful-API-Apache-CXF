@@ -28,10 +28,23 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public interface ArticleService {
 
+
     @POST
+    @ApiOperation(value = "Gets Article resource By ID. Version 1 - (version in URL)")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Article create", response = Article.class),
+            @ApiResponse(code = 404, message = "Error withe creating")
+    })
     Response createArticle(Article article);
 
+
+
     @GET
+    @ApiOperation(value = "Gets All Articles")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Get articles"),
+            @ApiResponse(code = 404, message = "Articles not found")
+    })
     List<Article> getArticles() ;
 
     @GET
@@ -45,11 +58,21 @@ public interface ArticleService {
 
 
     @DELETE
+    @ApiOperation(value = "Delete articles by id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Article deleted"),
+            @ApiResponse(code = 404, message = "Article not found")
+    })
     @Path("{id}")
     Response deleteArticleByID(@PathParam("id") long id);
 
     @PUT
     @Path("{id}")
+    @ApiOperation(value = "Update articles by id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Article updated"),
+            @ApiResponse(code = 404, message = "Article not found")
+    })
     Response updateArticleByID(@PathParam("id") long id, Article article);
 
 
