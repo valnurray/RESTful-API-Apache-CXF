@@ -4,6 +4,7 @@ package com.lankin.RESTfullSeviceApacheCXF.model;
 import lombok.Data;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 /**
  * Class {@code Article} in package {@code com.lankin.RESTfullSeviceApacheCXF.model}
@@ -18,7 +19,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "article")
 @XmlRootElement
-public class Article {
+public class Article implements Serializable {
+
+    private static final long serialVersionUID = 7875622941513777868L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

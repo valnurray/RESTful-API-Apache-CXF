@@ -2,17 +2,12 @@ package com.lankin.RESTfullSeviceApacheCXF.service.impl;
 
 
 import com.lankin.RESTfullSeviceApacheCXF.exception.ResourceNotFoundException;
-import com.lankin.RESTfullSeviceApacheCXF.exception.ResourceNotFoundExceptionMapper;
 import com.lankin.RESTfullSeviceApacheCXF.model.Article;
 import com.lankin.RESTfullSeviceApacheCXF.repository.ArticleRepository;
 import com.lankin.RESTfullSeviceApacheCXF.service.ArticleService;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
-
-import javax.ws.rs.core.Response;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
@@ -24,44 +19,61 @@ import java.util.List;
  *
  */
 @Service
-public class ArticleServiceImpl implements ArticleService{
-
-    private ArticleRepository articleRepository;
-    private ArticleService articleService;
+@Transactional
+public class ArticleServiceImpl implements ArticleService {
 
     @Autowired
-    public void setArticleServiceImpl(ArticleRepository articleRepository, ArticleService articleService) {
-        this.articleRepository = articleRepository;
-        this.articleService = articleService;
-    }
+    private ArticleRepository articleRepository;
+
 
     @Override
-    public Response createArticle(Article article) {
-        articleRepository.save(article);
-        return Response.ok(article + "Article was created").build();
+    public Article saveArticle(Article article) {
+        return articleRepository.save(article);
     }
 
+    /**
+     * find all articles
+     *
+     * @return List of articles
+     */
     @Override
-    public List<Article> getArticles() {
+    public List<Article> getAllArticles() {
         return articleRepository.findAll();
     }
 
-
+    /**
+     * find article by Entity id
+     * <p>
+     * Description for Optional!
+     * https://habr.com/ru/post/346782/ !!!!!!!!
+     */
     @Override
-    public Article getArticle(long id) {
+    public Article getArticleById(long id) {
+        /*
+         * without lambda!
+         */
+//        Optional <Article> article = articleRepository.findById(id);
+//        if(article.isPresent()){
+//            return article.get();
+//        }else {
+//            throw new ResourceNotFoundException("article", "id", id);
+//        }
+
+        /*
+         * with lambda
+         */
         return articleRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
     }
 
+    /**
+     * Update Entity
+     *
+     * @param article it's new Entity to save bu
+     * @param id      like Entity id
+     * @return new parameters in old Entity
+     */
     @Override
-    public Response deleteArticleByID(long id) {
-        //we need to check whether Article with given id is exist in DB or not
-        articleRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
-        articleRepository.deleteById(id);
-        return Response.ok("Article with id - " + id + " was Deleted").build();
-    }
-
-    @Override
-    public Response updateArticleByID(long id, Article article) {
+    public Article updateArticle(Article article, long id) {
         //we need to check whether Article with given id is exist in DB or not
         Article existingArticle = articleRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
         //change parameters
@@ -70,6 +82,20 @@ public class ArticleServiceImpl implements ArticleService{
         existingArticle.setTitle(article.getTitle());
         //save existing Article to DB
         articleRepository.save(existingArticle);
-        return Response.ok(article + "was updated").build();
+
+        return existingArticle;
+    }
+
+    /**
+     * delete Entity from DB
+     *
+     * @param id Entity
+     */
+    @Override
+    public void deleteArticle(long id) {
+
+        //we need to check whether Article with given id is exist in DB or not
+        articleRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        articleRepository.deleteById(id);
     }
 }
