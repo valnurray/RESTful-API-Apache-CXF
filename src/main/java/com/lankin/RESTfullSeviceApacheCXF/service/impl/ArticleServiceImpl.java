@@ -34,7 +34,7 @@ public class ArticleServiceImpl implements ArticleService{
      * has only one constructor, the @Autowired annotation can be omitted
      * and Spring will use that constructor and inject all necessary dependencies
      */
-    @Autowired
+//    @Autowired
     @Lazy
     public ArticleServiceImpl(ArticleRepository articleRepository, ArticleService articleService) {
         this.articleRepository = articleRepository;
