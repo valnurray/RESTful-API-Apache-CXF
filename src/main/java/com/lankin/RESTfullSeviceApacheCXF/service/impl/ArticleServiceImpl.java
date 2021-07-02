@@ -7,6 +7,7 @@ import com.lankin.RESTfullSeviceApacheCXF.model.Article;
 import com.lankin.RESTfullSeviceApacheCXF.repository.ArticleRepository;
 import com.lankin.RESTfullSeviceApacheCXF.service.ArticleService;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -25,22 +26,14 @@ import java.util.List;
 @Service
 public class ArticleServiceImpl implements ArticleService{
 
-    ArticleRepository articleRepository;
-    ArticleService articleService;
+    private ArticleRepository articleRepository;
+    private ArticleService articleService;
 
-    /**
-     * @Autowired !!!!
-     * Starting with Spring 4.3, if a Class, which is configured as a Spring bean,
-     * has only one constructor, the @Autowired annotation can be omitted
-     * and Spring will use that constructor and inject all necessary dependencies
-     */
-//    @Autowired
-    @Lazy
-    public ArticleServiceImpl(ArticleRepository articleRepository, ArticleService articleService) {
+    @Autowired
+    public void setArticleServiceImpl(ArticleRepository articleRepository, ArticleService articleService) {
         this.articleRepository = articleRepository;
         this.articleService = articleService;
     }
-
 
     @Override
     public Response createArticle(Article article) {
