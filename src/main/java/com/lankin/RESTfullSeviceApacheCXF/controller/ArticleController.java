@@ -30,20 +30,20 @@ public class ArticleController {
 
     @GET
     @Path("/{id}")
-    @ApiOperation(value = "Finds an exist user with passed ID")
+    @ApiOperation(value = "Find Article by passed ID")
     public Article findById(@PathParam("id") final long id) {
         return articleService.getArticleById(id);
     }
 
     @GET
-    @ApiOperation(value = "Find all users", response = Article.class)
+    @ApiOperation(value = "Find all Articles", response = Article.class)
     public List<Article> findAll() {
         return articleService.getAllArticles();
     }
 
     @PUT
     @Path("/{id}")
-    @ApiOperation(value = "Updates an exist user with passed user fields")
+    @ApiOperation(value = "Updates an exist Article with passed Article fields")
     public Response update(@PathParam("id") final long id,
                            final Article article) {
         articleService.updateArticle(article, id);
@@ -52,7 +52,7 @@ public class ArticleController {
 
     @DELETE
     @Path("/{id}")
-    @ApiOperation(value = "Deletes an exist user with ID")
+    @ApiOperation(value = "Deletes an exist Article with passed ID")
     public Response deleteById(@PathParam("id") final long id) {
         articleService.deleteArticle(id);
         return Response.ok("Article with id - " + id + " was Deleted").build();
