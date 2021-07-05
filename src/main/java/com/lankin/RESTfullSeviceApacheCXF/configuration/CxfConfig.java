@@ -1,7 +1,7 @@
 package com.lankin.RESTfullSeviceApacheCXF.configuration;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-import com.lankin.RESTfullSeviceApacheCXF.controller.ArticleController;
+import com.lankin.RESTfullSeviceApacheCXF.service.api.ArticleServiceImpl;
 import org.apache.cxf.Bus;
 import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
@@ -26,15 +26,19 @@ public class CxfConfig {
         endpoint.setProvider(new JacksonJsonProvider());
         endpoint.setBus(bus);
         endpoint.setAddress("/");
-        endpoint.setServiceBeans(Arrays.<Object>asList(articleController()));
+        endpoint.setServiceBeans(Arrays.<Object>asList(articleServiceImpl()));
 //        endpoint.setServiceBeans(Arrays.<Object>asList(new ArticleController()));
         endpoint.setFeatures(Arrays.asList(new Swagger2Feature()));
         return endpoint.create();
     }
 
+//    @Bean
+//    public ArticleController articleController() {
+//        return new ArticleController();
+//    }
     @Bean
-    public ArticleController articleController() {
-        return new ArticleController();
+    public ArticleServiceImpl articleServiceImpl(){
+        return new ArticleServiceImpl();
     }
 
     //	 The default address of CXF RESTfull API is /services to change the API
