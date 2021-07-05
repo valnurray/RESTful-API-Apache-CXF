@@ -1,11 +1,27 @@
 package com.lankin.RESTfullSeviceApacheCXF.service.models.request;
 
-import lombok.Data;
 
-@Data
+import com.lankin.RESTfullSeviceApacheCXF.model.Article;
+
 public class ArticleRequest {
-    private long id;
-    private String title;
-    private String author;
-    private String body;
+    Article article;
+
+    public void ArticleSetId(long id){
+        article.setId(id);
+    }
+
+    public void ArticleSetTitle(String title){
+        article.setTitle(title);
+    }
+
+    public void ArticleSetBody(String body){
+        article.setBody(body);
+    }
+
+    public void ArticleSetAuthor(String author){
+        article.setAuthor(author);
+    }
+
+
+
 }
