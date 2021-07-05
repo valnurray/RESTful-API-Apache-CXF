@@ -43,6 +43,7 @@ public class CxfConfig {
     /**
      * The default address of CXF RESTfull API is /services
      * this method change directory
+     * http://localhost:8080/services
      * @return
      */
     @Bean
