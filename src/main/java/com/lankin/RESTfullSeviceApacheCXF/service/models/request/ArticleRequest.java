@@ -2,26 +2,23 @@ package com.lankin.RESTfullSeviceApacheCXF.service.models.request;
 
 
 import com.lankin.RESTfullSeviceApacheCXF.model.Article;
+import lombok.Data;
 
+@Data
 public class ArticleRequest {
+
     Article article;
 
-    public void ArticleSetId(long id){
-        article.setId(id);
-    }
+    private long articleRequestId = article.getId();
+    private String articleRequestTitle = article.getTitle();
+    private String articleRequestAuthor = article.getAuthor();
+    private String articleRequestBody = article.getBody();
 
-    public void ArticleSetTitle(String title){
-        article.setTitle(title);
-    }
-
-    public void ArticleSetBody(String body){
-        article.setBody(body);
-    }
-
-    public void ArticleSetAuthor(String author){
-        article.setAuthor(author);
-    }
-
-
+//    public ArticleRequest(long articleRequestId, String articleRequestTitle, String articleRequestAuthor, String articleRequestBody){
+//        this.articleRequestId = articleRequestId;
+//        this.articleRequestTitle = articleRequestTitle;
+//        this.articleRequestAuthor = articleRequestAuthor;
+//        this.articleRequestBody = articleRequestBody;
+//    }
 
 }
