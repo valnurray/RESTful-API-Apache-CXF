@@ -5,6 +5,7 @@ import com.lankin.RESTfullSeviceApacheCXF.model.Article;
 import com.lankin.RESTfullSeviceApacheCXF.service.models.request.ArticleRequest;
 import com.lankin.RESTfullSeviceApacheCXF.service.models.response.ArticleResponse;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -22,4 +23,6 @@ public interface ArticleMapper {
     Article ArticleRequestToArticle (ArticleRequest articleRequest);
 
     List<ArticleResponse> ArticleToArticleResponse(List<Article> all);
+
+    void updateArticleResponseFromArticleRequest(ArticleRequest articleRequest, @MappingTarget Article article);
 }
