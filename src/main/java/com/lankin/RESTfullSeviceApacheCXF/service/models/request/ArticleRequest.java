@@ -8,8 +8,8 @@ import javax.persistence.Id;
 
 @Data
 public class ArticleRequest {
-    @Id
-    private long id;
+//    @Id
+//    private long id;
 
     private String title;
 
