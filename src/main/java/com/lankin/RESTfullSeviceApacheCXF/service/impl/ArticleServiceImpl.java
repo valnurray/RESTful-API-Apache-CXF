@@ -4,7 +4,7 @@ import com.lankin.RESTfullSeviceApacheCXF.exception.ResourceNotFoundException;
 import com.lankin.RESTfullSeviceApacheCXF.mappers.ArticleMapper;
 import com.lankin.RESTfullSeviceApacheCXF.model.Article;
 import com.lankin.RESTfullSeviceApacheCXF.repository.ArticleRepository;
-import com.lankin.RESTfullSeviceApacheCXF.service.ArticleService;
+import com.lankin.RESTfullSeviceApacheCXF.service.api.ArticleService;
 import com.lankin.RESTfullSeviceApacheCXF.service.api.models.request.ArticleRequest;
 import com.lankin.RESTfullSeviceApacheCXF.service.api.models.response.ArticleResponse;
 import org.springframework.beans.factory.annotation.Autowired;

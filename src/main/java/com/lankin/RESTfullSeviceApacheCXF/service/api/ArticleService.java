@@ -1,4 +1,4 @@
-package com.lankin.RESTfullSeviceApacheCXF.service;
+package com.lankin.RESTfullSeviceApacheCXF.service.api;
 
 import com.lankin.RESTfullSeviceApacheCXF.model.Article;
 import com.lankin.RESTfullSeviceApacheCXF.service.api.models.request.ArticleRequest;
