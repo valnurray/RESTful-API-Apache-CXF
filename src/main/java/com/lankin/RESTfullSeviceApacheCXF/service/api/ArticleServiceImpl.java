@@ -42,7 +42,8 @@ public class ArticleServiceImpl implements ArticleService {
 //    @GET
     @Override
     public ArticleResponse getArticleResponse(long id) {
-        return null;
+        return articleMapper.ArticleToArticleResponse(articleRepository.findById(id).get());
+
     }
 //    @DELETE
     @Override
