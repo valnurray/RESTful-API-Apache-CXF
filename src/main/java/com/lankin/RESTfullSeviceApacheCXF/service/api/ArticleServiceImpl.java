@@ -42,17 +42,27 @@ public class ArticleServiceImpl implements ArticleService {
 //    @GET
     @Override
     public ArticleResponse getArticleResponse(long id) {
+        /* we need to check whether Article with given id is exist in DB or not */
+        articleRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
         return articleMapper.ArticleToArticleResponse(articleRepository.findById(id).get());
 
     }
 //    @DELETE
     @Override
     public ArticleResponse deleteArticleByID(long id) {
-        return null;
+        /* we need to check whether Article with given id is exist in DB or not */
+        articleRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        /*Deleting*/
+        ArticleResponse articleResponse = articleMapper.ArticleToArticleResponse(articleRepository.findById(id).get());
+        articleRepository.deleteById(id);
+        return articleResponse;
+
     }
 //    @PUT
     @Override
     public ArticleResponse updateArticleByID(long id, ArticleRequest articleRequest) {
+        /* we need to check whether Article with given id is exist in DB or not */
+        articleRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
         return null;
     }
 }
