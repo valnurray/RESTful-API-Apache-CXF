@@ -70,13 +70,8 @@ public class ArticleServiceImpl implements ArticleService {
         ArticleRequest existingArticleRequest = articleMapper
                 .ArticleToArticleRequest(articleRepository.findById(id).orElseThrow(ResourceNotFoundException::new));
         //change parameters
-
-
-
-
-
-
-        return null;
+        articleRepository.save(articleMapper.ArticleRequestToArticle(articleRequest));
+        return articleMapper.ArticleToArticleResponse(articleMapper.ArticleRequestToArticle(articleRequest));
     }
 
 //    @Override
