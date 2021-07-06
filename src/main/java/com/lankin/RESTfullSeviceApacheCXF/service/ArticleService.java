@@ -5,6 +5,7 @@ import com.lankin.RESTfullSeviceApacheCXF.service.models.request.ArticleRequest;
 import com.lankin.RESTfullSeviceApacheCXF.service.models.response.ArticleResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.http.ResponseEntity;
 
 
 import javax.ws.rs.Consumes;
@@ -29,12 +30,13 @@ public interface ArticleService {
     @Consumes(MediaType.APPLICATION_JSON)
 //    Response createArticle(Article article);
     ArticleResponse createArticleResponse(ArticleRequest articleRequest);
+//    ResponseEntity<Article> createArticle (ArticleRequest articleRequest);
 
     @GET
     @ApiOperation(value = "Find all Articles", response = Article.class)
     @Produces(MediaType.APPLICATION_JSON)
-    List<Article> getArticles() ;
-//    List<ArticleResponse> getArticleResponses() ;
+//    List<Article> getArticles() ;
+    List<ArticleResponse> getArticleResponses() ;
 
     @GET
     @Path("{id}")
@@ -43,7 +45,6 @@ public interface ArticleService {
     @Consumes(MediaType.APPLICATION_JSON)
 //    Article getArticle(@PathParam("id") long id);
     ArticleResponse getArticleResponse(@PathParam("id") long id);
-
 
     @DELETE
     @Path("{id}")
