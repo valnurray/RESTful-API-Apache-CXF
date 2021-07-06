@@ -28,6 +28,7 @@ public interface ArticleService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     Response createArticle(Article article);
+    //ArticleResponse createArticleResponse(ArticleRequest articleRequest);
 
     @GET
     @ApiOperation(value = "Find all Articles", response = Article.class)

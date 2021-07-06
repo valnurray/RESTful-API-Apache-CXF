@@ -1,24 +1,20 @@
 package com.lankin.RESTfullSeviceApacheCXF.service.models.request;
 
 
-import com.lankin.RESTfullSeviceApacheCXF.model.Article;
+
 import lombok.Data;
+import javax.persistence.Id;
+
 
 @Data
 public class ArticleRequest {
+    @Id
+    private long id;
 
-    Article article;
+    private String title;
 
-    private long articleRequestId = article.getId();
-    private String articleRequestTitle = article.getTitle();
-    private String articleRequestAuthor = article.getAuthor();
-    private String articleRequestBody = article.getBody();
+    private String author;
 
-//    public ArticleRequest(long articleRequestId, String articleRequestTitle, String articleRequestAuthor, String articleRequestBody){
-//        this.articleRequestId = articleRequestId;
-//        this.articleRequestTitle = articleRequestTitle;
-//        this.articleRequestAuthor = articleRequestAuthor;
-//        this.articleRequestBody = articleRequestBody;
-//    }
+    private String body;
 
 }
