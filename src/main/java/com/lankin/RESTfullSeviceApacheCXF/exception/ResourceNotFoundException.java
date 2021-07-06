@@ -11,7 +11,6 @@ import java.io.Serializable;
  * @version 1.0
  *
  */
-
 public class ResourceNotFoundException extends RuntimeException {
 
 }

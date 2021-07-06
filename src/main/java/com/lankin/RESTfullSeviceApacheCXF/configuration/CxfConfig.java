@@ -27,22 +27,14 @@ public class CxfConfig {
         endpoint.setBus(bus);
         endpoint.setAddress("/");
         endpoint.setServiceBeans(Arrays.<Object>asList(articleServiceImpl()));
-//        endpoint.setServiceBeans(Arrays.<Object>asList(new ArticleController()));
         endpoint.setFeatures(Arrays.asList(new Swagger2Feature()));
         return endpoint.create();
     }
 
-//    @Bean
-//    public ArticleController articleController() {
-//        return new ArticleController();
-//    }
     @Bean
     public ArticleServiceImpl articleServiceImpl(){
         return new ArticleServiceImpl();
     }
-
-    //	 The default address of CXF RESTfull API is /services to change the API
-    // sub-directory from /services with /api or anything that you like
 
     /**
      * The default address of CXF RESTfull API is /services
