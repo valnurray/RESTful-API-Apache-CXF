@@ -1,9 +1,8 @@
-package com.lankin.RESTfullSeviceApacheCXF.service.models.request;
+package com.lankin.RESTfullSeviceApacheCXF.service.api.models.request;
 
 
 
 import lombok.Data;
-import javax.persistence.Id;
 
 
 @Data

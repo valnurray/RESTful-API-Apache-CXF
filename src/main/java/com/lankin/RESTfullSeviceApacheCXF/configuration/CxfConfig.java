@@ -1,7 +1,7 @@
 package com.lankin.RESTfullSeviceApacheCXF.configuration;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-import com.lankin.RESTfullSeviceApacheCXF.service.api.ArticleServiceImpl;
+import com.lankin.RESTfullSeviceApacheCXF.service.impl.ArticleServiceImpl;
 import org.apache.cxf.Bus;
 import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;

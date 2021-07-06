@@ -1,4 +1,4 @@
-package com.lankin.RESTfullSeviceApacheCXF.service.models.response;
+package com.lankin.RESTfullSeviceApacheCXF.service.api.models.response;
 
 
 

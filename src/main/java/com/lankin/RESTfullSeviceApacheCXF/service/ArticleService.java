@@ -1,8 +1,8 @@
 package com.lankin.RESTfullSeviceApacheCXF.service;
 
 import com.lankin.RESTfullSeviceApacheCXF.model.Article;
-import com.lankin.RESTfullSeviceApacheCXF.service.models.request.ArticleRequest;
-import com.lankin.RESTfullSeviceApacheCXF.service.models.response.ArticleResponse;
+import com.lankin.RESTfullSeviceApacheCXF.service.api.models.request.ArticleRequest;
+import com.lankin.RESTfullSeviceApacheCXF.service.api.models.response.ArticleResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import javax.ws.rs.Consumes;
