@@ -1,6 +1,7 @@
 package com.lankin.RESTfullSeviceApacheCXF.service.api;
 
 import com.lankin.RESTfullSeviceApacheCXF.exception.ResourceNotFoundException;
+import com.lankin.RESTfullSeviceApacheCXF.mappers.ArticleMapper;
 import com.lankin.RESTfullSeviceApacheCXF.model.Article;
 import com.lankin.RESTfullSeviceApacheCXF.repository.ArticleRepository;
 import com.lankin.RESTfullSeviceApacheCXF.service.ArticleService;
@@ -14,6 +15,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Autowired
     private ArticleRepository articleRepository;
+
+    @Autowired
+    private ArticleMapper articleMapper;
 
     @Override
     public Response createArticle(Article article) {
