@@ -27,20 +27,22 @@ public interface ArticleService {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    Response createArticle(Article article);
-//    ArticleResponse createArticleResponse(ArticleRequest articleRequest);
+//    Response createArticle(Article article);
+    ArticleResponse createArticleResponse(ArticleRequest articleRequest);
 
     @GET
     @ApiOperation(value = "Find all Articles", response = Article.class)
     @Produces(MediaType.APPLICATION_JSON)
     List<Article> getArticles() ;
+//    List<ArticleResponse> getArticleResponses() ;
 
     @GET
     @Path("{id}")
     @ApiOperation(value = "Find Article by passed ID")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    Article getArticle(@PathParam("id") long id);
+//    Article getArticle(@PathParam("id") long id);
+    ArticleResponse getArticleResponse(@PathParam("id") long id);
 
 
     @DELETE
@@ -48,14 +50,16 @@ public interface ArticleService {
     @ApiOperation(value = "Deletes an exist Article with passed ID")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    Response deleteArticleByID(@PathParam("id") long id);
+//    Response deleteArticleByID(@PathParam("id") long id);
+    ArticleResponse deleteArticleByID(@PathParam("id") long id);
 
     @PUT
     @Path("{id}")
     @ApiOperation(value = "Updates an exist Article with passed Article fields")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    Response updateArticleByID(@PathParam("id") long id, Article article);
+//    Response updateArticleByID(@PathParam("id") long id, Article article);
+    ArticleResponse updateArticleByID(@PathParam("id") long id, ArticleRequest articleRequest);
 
 }
 
