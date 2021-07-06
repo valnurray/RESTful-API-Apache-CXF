@@ -36,6 +36,7 @@ public class ArticleServiceImpl implements ArticleService {
     public ArticleResponse getArticleResponse(long id) {
         /* we need to check whether Article with given id is exist in DB or not */
         articleRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+//        articleRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
         /*Getting*/
         return articleMapper.ArticleToArticleResponse(articleRepository.findById(id).get());
 
