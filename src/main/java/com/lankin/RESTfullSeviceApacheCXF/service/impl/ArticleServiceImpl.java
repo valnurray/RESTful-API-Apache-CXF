@@ -7,16 +7,20 @@ import com.lankin.RESTfullSeviceApacheCXF.repository.ArticleRepository;
 import com.lankin.RESTfullSeviceApacheCXF.service.api.ArticleService;
 import com.lankin.RESTfullSeviceApacheCXF.service.api.models.request.ArticleRequest;
 import com.lankin.RESTfullSeviceApacheCXF.service.api.models.response.ArticleResponse;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
+@Data
+//@RequiredArgsConstructor
 public class ArticleServiceImpl implements ArticleService {
 
-    @Autowired
-    private ArticleRepository articleRepository;
+//    @Autowired
+    private final ArticleRepository articleRepository;
 
-    @Autowired
-    private ArticleMapper articleMapper;
+//    @Autowired
+    private final ArticleMapper articleMapper;
 
     /*@POST*/
     @Override
