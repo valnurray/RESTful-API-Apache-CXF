@@ -19,9 +19,9 @@ import java.io.Serializable;
 @Entity
 @Table(name = "article")
 @XmlRootElement
-public class Article implements Serializable {
+public class Article {
 
-    private static final long serialVersionUID = 7875622941513777868L;
+//    private static final long serialVersionUID = 7875622941513777868L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

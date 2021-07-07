@@ -22,6 +22,7 @@ public class CxfConfig {
 
     @Bean
     public Server rsServer() {
+
         final JAXRSServerFactoryBean endpoint = new JAXRSServerFactoryBean();
         endpoint.setProvider(new JacksonJsonProvider());
         endpoint.setBus(bus);
