@@ -8,7 +8,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @ApplicationException
-public class StrangeException extends WebApplicationException {
+public class NotFoundArticleException extends WebApplicationException {
 
     @Override
     public Response getResponse() {

@@ -1,8 +1,6 @@
 package com.lankin.RESTfullSeviceApacheCXF.service.impl;
 
-import com.lankin.RESTfullSeviceApacheCXF.constants.Constants;
-import com.lankin.RESTfullSeviceApacheCXF.exception.ResourceNotFoundException;
-import com.lankin.RESTfullSeviceApacheCXF.exception.StrangeException;
+import com.lankin.RESTfullSeviceApacheCXF.exception.NotFoundArticleException;
 import com.lankin.RESTfullSeviceApacheCXF.mappers.ArticleMapper;
 import com.lankin.RESTfullSeviceApacheCXF.model.Article;
 import com.lankin.RESTfullSeviceApacheCXF.repository.ArticleRepository;
@@ -38,7 +36,7 @@ public class ArticleServiceImpl implements ArticleService {
     public ArticleResponse getArticleResponse(long id) {
         /* we need to check whether Article with given id is exist in DB or not */
 //        articleRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
-        articleRepository.findById(id).orElseThrow(StrangeException::new);
+        articleRepository.findById(id).orElseThrow(NotFoundArticleException::new);
         /*Getting*/
         return articleMapper.ArticleToArticleResponse(articleRepository.findById(id).get());
 
@@ -47,7 +45,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public ArticleResponse deleteArticleByID(long id) {
         /* we need to check whether Article with given id is exist in DB or not */
-        articleRepository.findById(id).orElseThrow(StrangeException::new);
+        articleRepository.findById(id).orElseThrow(NotFoundArticleException::new);
         /*Deleting*/
         ArticleResponse articleResponse = articleMapper.ArticleToArticleResponse(articleRepository.findById(id).get());
         articleRepository.deleteById(id);
@@ -59,7 +57,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public ArticleResponse updateArticleByID(long id, ArticleRequest articleRequest) {
         /* we need to check whether Article with given id is exist in DB or not */
-        Article article = articleRepository.findById(id).orElseThrow(StrangeException::new);
+        Article article = articleRepository.findById(id).orElseThrow(NotFoundArticleException::new);
          articleMapper.updateArticleResponseFromArticleRequest(articleRequest, article);
          articleRepository.save(article);
         return articleMapper.ArticleToArticleResponse(article);
