@@ -13,7 +13,7 @@ services:
     healthcheck:
       test: "exit 0"
 
-  bookstore:
+  restful:
     build: .
     image: restful
     container_name: restful
