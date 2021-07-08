@@ -8,18 +8,13 @@ import com.lankin.RESTfullSeviceApacheCXF.service.api.ArticleService;
 import com.lankin.RESTfullSeviceApacheCXF.service.api.models.request.ArticleRequest;
 import com.lankin.RESTfullSeviceApacheCXF.service.api.models.response.ArticleResponse;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 @Data
-//@RequiredArgsConstructor
 public class ArticleServiceImpl implements ArticleService {
 
-//    @Autowired
     private final ArticleRepository articleRepository;
 
-//    @Autowired
     private final ArticleMapper articleMapper;
 
     /*@POST*/
@@ -39,12 +34,11 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public ArticleResponse getArticleResponse(long id) {
         /* we need to check whether Article with given id is exist in DB or not */
-//        articleRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
         articleRepository.findById(id).orElseThrow(NotFoundArticleException::new);
         /*Getting*/
         return articleMapper.ArticleToArticleResponse(articleRepository.findById(id).get());
-
     }
+
     /*@DELETE*/
     @Override
     public ArticleResponse deleteArticleByID(long id) {
@@ -54,7 +48,6 @@ public class ArticleServiceImpl implements ArticleService {
         ArticleResponse articleResponse = articleMapper.ArticleToArticleResponse(articleRepository.findById(id).get());
         articleRepository.deleteById(id);
         return articleResponse;
-
     }
 
     /*@PUT*/

@@ -44,11 +44,6 @@ public class CxfConfig {
         return Mappers.getMapper(ArticleMapper.class);
     }
 
-//    @Bean
-//    public ArticleRepository articleRepositoryGet(){
-//        return R
-//    }
-
     /**
      * The default address of CXF RESTfull API is /services
      * this method change directory
