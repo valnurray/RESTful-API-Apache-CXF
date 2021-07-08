@@ -104,15 +104,12 @@ class ArticleServiceImplTest {
         article.setAuthor("Jonny");
         article.setTitle("Mad");
         article.setBody("died");
-
         doReturn(Optional.of(article)).when(articleRepository).findById(1L);
 
-        // Execute the service call
-        Optional<Article> returnedArticle = articleRepository.findById(1L);
+        ArticleResponse returnedResponse = articleService.getArticleResponse(1L);
+        Assertions.assertEquals(1L, returnedResponse.getId());
+        Assertions.assertNotNull(returnedResponse, "Should not be null");
 
-        // Assert the response
-        Assertions.assertTrue(returnedArticle.isPresent(), "Article was not found");
-        Assertions.assertSame(returnedArticle.get(), article, "The article returned was not the same as the mock");
     }
 
     @Test
