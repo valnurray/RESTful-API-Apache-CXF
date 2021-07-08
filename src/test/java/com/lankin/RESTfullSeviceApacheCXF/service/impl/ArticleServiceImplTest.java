@@ -11,15 +11,19 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.BooleanSupplier;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 class ArticleServiceImplTest {
@@ -113,20 +117,19 @@ class ArticleServiceImplTest {
     }
 
     @Test
-    @DisplayName("Test findById Not Found")
-    void testGetArticleResponseByIdNotFound() {
+    @DisplayName("Test delete article by id")
+    public void deleteArticleByID() {
         // Setup our mock repository
-        doReturn(Optional.empty()).when(articleRepository).findById(1L);
+        Article article = new Article();
+        article.setId(1L);
+        article.setAuthor("Jonny");
+        article.setTitle("Mad");
+        article.setBody("get mad");
 
-        // Execute the service call
-        Optional<Article> returnedArticle = articleRepository.findById(1L);
+        when(articleRepository.findById(article.getId())).thenReturn(Optional.of(article));
+        articleService.deleteArticleByID(article.getId());
+        verify(articleRepository).deleteById(article.getId());
 
-        // Assert the response
-        Assertions.assertFalse(returnedArticle.isPresent(), "Article should not be found");
-    }
-
-    @Test
-    void deleteArticleByID() {
     }
 
     @Test
