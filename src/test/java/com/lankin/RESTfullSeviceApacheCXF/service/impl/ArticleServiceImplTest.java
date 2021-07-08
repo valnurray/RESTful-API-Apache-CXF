@@ -21,6 +21,7 @@ import java.util.Optional;
 import java.util.function.BooleanSupplier;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -134,5 +135,26 @@ class ArticleServiceImplTest {
 
     @Test
     void updateArticleByID() {
+        Article article = new Article();
+        article.setId(1L);
+        article.setAuthor("Jonny");
+        article.setTitle("Mad");
+        article.setBody("get mad");
+
+        ArticleRequest newArticle = new ArticleRequest();
+        newArticle.setAuthor("Billy");
+        newArticle.setTitle("Relaxing");
+        newArticle.setBody("get cure from madness");
+
+        given(articleRepository.findById(article.getId())).willReturn(Optional.of(article));
+
+        articleService.updateArticleByID(article.getId(), newArticle);
+
+        Assertions.assertTrue(newArticle.getAuthor().equalsIgnoreCase(article.getAuthor()));
+        Assertions.assertTrue(newArticle.getBody().equalsIgnoreCase(article.getBody()));
+        Assertions.assertTrue(newArticle.getTitle().equalsIgnoreCase(article.getTitle()));
+
+        verify(articleRepository).findById(article.getId());
+
     }
 }
