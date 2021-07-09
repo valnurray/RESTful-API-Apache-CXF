@@ -1,6 +1,7 @@
 package com.lankin.RESTfullSeviceApacheCXF.service.impl;
 
 import com.lankin.RESTfullSeviceApacheCXF.MockData;
+import com.lankin.RESTfullSeviceApacheCXF.exception.NotFoundArticleException;
 import com.lankin.RESTfullSeviceApacheCXF.mappers.ArticleMapper;
 import com.lankin.RESTfullSeviceApacheCXF.model.Article;
 import com.lankin.RESTfullSeviceApacheCXF.repository.ArticleRepository;
@@ -15,11 +16,14 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Response;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
@@ -36,6 +40,7 @@ class ArticleServiceImplTest {
     private ArticleRepository articleRepository;
 
     private ArticleMapper articleMapper;
+
 
     @BeforeEach
     void setup(){
@@ -71,8 +76,6 @@ class ArticleServiceImplTest {
 
         // Assert the response
         Assertions.assertEquals(2, articleList.size(), "findAll should return 2 articles");
-        org.assertj.core.api.Assertions.assertThat(articleList.size()).isGreaterThan(1);
-        org.assertj.core.api.Assertions.assertThat(articleList.size()).isEqualTo(2);
     }
 
     @Test
@@ -117,5 +120,18 @@ class ArticleServiceImplTest {
 
         verify(articleRepository).findById(article.getId());
 
+    }
+
+    @Test
+    @DisplayName("Test findById, update, delete with Exception")
+    public void testGetArticleByIdUpdateArticleByIdDeleteArticleByIdThrowException() {
+
+//        // Setup our mock repository
+        Article article = MockData.getFirstArticle();
+
+        Assertions.assertThrows(NotFoundArticleException.class,
+                ()->{
+                    articleService.getArticleResponse(23L);
+                });
     }
 }
