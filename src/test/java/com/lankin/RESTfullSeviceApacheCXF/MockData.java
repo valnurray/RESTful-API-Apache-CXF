@@ -4,7 +4,7 @@ import com.lankin.RESTfullSeviceApacheCXF.model.Article;
 import com.lankin.RESTfullSeviceApacheCXF.service.api.models.request.ArticleRequest;
 
 public class MockData {
-    public Article getFirstArticle(){
+    public static Article getFirstArticle(){
         Article article = new Article();
         article.setId(1L);
         article.setAuthor("Jonny");
@@ -13,7 +13,7 @@ public class MockData {
         return article;
     }
 
-    public Article getSecondArticle(){
+    public static Article getSecondArticle(){
         Article article = new Article();
         article.setId(2L);
         article.setAuthor("Billy");
@@ -22,7 +22,7 @@ public class MockData {
         return article;
     }
 
-    public ArticleRequest getFirstArticleRequest(){
+    public static ArticleRequest getFirstArticleRequest(){
         ArticleRequest articleRequest = new ArticleRequest();
         articleRequest.setAuthor("Billy");
         articleRequest.setTitle("Relaxing");

@@ -28,7 +28,7 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 class ArticleServiceImplTest {
 
-    private MockData mockData;
+
 
     private ArticleService articleService;
 
@@ -41,12 +41,11 @@ class ArticleServiceImplTest {
     void setup(){
         articleMapper = Mappers.getMapper(ArticleMapper.class);
         articleService = new ArticleServiceImpl(articleRepository, articleMapper);
-        mockData = new MockData();
     }
 
     @Test
     void createArticleResponse() {
-        Article article = mockData.getFirstArticle();
+        Article article = MockData.getFirstArticle();
 
         doReturn(article).when(articleRepository).save(any());
         // Execute the service call
@@ -60,10 +59,10 @@ class ArticleServiceImplTest {
 
     @Test
     @DisplayName("Test findAll")
-    void getArticleResponses() throws Exception {
+    void getArticleResponses() {
         // Setup our mock repository
-        Article article1 = mockData.getFirstArticle();
-        Article article2 = mockData.getSecondArticle();
+        Article article1 = MockData.getFirstArticle();
+        Article article2 = MockData.getSecondArticle();
 
         doReturn(Arrays.asList(article1, article2)).when(articleRepository).findAll();
 
@@ -81,7 +80,7 @@ class ArticleServiceImplTest {
     public void testGetArticleResponseById() {
 
         // Setup our mock repository
-        Article article = mockData.getFirstArticle();
+        Article article = MockData.getFirstArticle();
         doReturn(Optional.of(article)).when(articleRepository).findById(1L);
 
         ArticleResponse returnedResponse = articleService.getArticleResponse(1L);
@@ -94,7 +93,7 @@ class ArticleServiceImplTest {
     @DisplayName("Test delete article by id")
     public void deleteArticleByID() {
         // Setup our mock repository
-        Article article = mockData.getFirstArticle();
+        Article article = MockData.getFirstArticle();
         when(articleRepository.findById(article.getId())).thenReturn(Optional.of(article));
         articleService.deleteArticleByID(article.getId());
         verify(articleRepository).deleteById(article.getId());
@@ -104,8 +103,8 @@ class ArticleServiceImplTest {
     @Test
     void updateArticleByID() {
         // Setup our mock repository
-        Article article = mockData.getFirstArticle();
-        ArticleRequest newArticle = mockData.getFirstArticleRequest();
+        Article article = MockData.getFirstArticle();
+        ArticleRequest newArticle = MockData.getFirstArticleRequest();
         given(articleRepository.findById(article.getId())).willReturn(Optional.of(article));
 
         //update Repository
