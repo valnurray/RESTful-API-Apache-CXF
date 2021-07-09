@@ -1,6 +1,6 @@
 version: '2.1'
 services:
-  database:
+ database:
     image: mysql
     container_name: lankin-db
     environment:
@@ -13,7 +13,7 @@ services:
     healthcheck:
       test: "exit 0"
 
-  restful:
+ restful:
     build: .
     image: restful
     container_name: restful
@@ -27,4 +27,7 @@ services:
 volumes:
   datavolume:
 
+#docker build -t lankin-bookstore .
+#docker-compose up --build
+#docker-compose down -v
 
