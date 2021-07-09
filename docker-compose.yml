@@ -2,8 +2,8 @@ version: '2.1'
 services:
   database:
     image: mysql
-#    container_name: lankindb
-    container_name: localhost:3306
+    container_name: lankindb
+#    container_name: localhost:3306
     environment:
       - MYSQL_ROOT_PASSWORD=M1xV1n1l
       - MYSQL_DATABASE=lankin
