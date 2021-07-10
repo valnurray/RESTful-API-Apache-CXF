@@ -131,7 +131,7 @@ class ArticleServiceImplTest {
 
         Assertions.assertThrows(NotFoundArticleException.class,
                 ()->{
-                    articleService.getArticleResponse(23L);
+                    articleService.getArticleResponse(100000L);
                 });
     }
 }
