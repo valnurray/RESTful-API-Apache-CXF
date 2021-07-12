@@ -1,33 +1,38 @@
-version: '2.1'
+version: "3.8"
 services:
-  database:
-    image: mysql
+
+#--DB--
+  mysql:
     container_name: lankindb
+    image: mysql:latest
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    networks:
+      - restful-mysql-network
     environment:
       - MYSQL_ROOT_PASSWORD=M1xV1n1l
       - MYSQL_DATABASE=lankin
-    volumes:
-      - datavolume:/var/lib/mysql
-#    ports:
-#      - 8080:3306
-    healthcheck:
-      test: "exit 0"
 
+#--WEB>--
   restful:
     build: .
     image: restful
-    container_name: restful
     ports:
-      - 8080:8080
-    restart: on-failure
-    environment:
-      MYSQL_DATABASE_HOST: database
+      - "8080:8080"
+    restart: always
+    networks:
+      - restful-mysql-network
     depends_on:
-      database:
-        condition: service_healthy
-
+      - mysql
+    links:
+      - mysql
+      -
+#--Prop--
+networks:
+  restful-mysql-network:
 volumes:
-  datavolume:
+  db_data: { }
 
 
 #docker build -t restful .
@@ -36,3 +41,34 @@ volumes:
 #  docker exec -it <container Id> <comand>
 #  curl -X POST -H 'Content-Type:application/json' http://localhost:8080/article -d '{"author":"author","title":"title","body":"body from docker"}'
 #  curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:8080/services
+
+#-------------n
+  ------------------------------------
+#version: '3.8'
+#services:
+#  database:
+#    image: mysql
+#    container_name: lankindb
+#    environment:
+#      - MYSQL_ROOT_PASSWORD=M1xV1n1l
+#      - MYSQL_DATABASE=lankin
+#    volumes:
+#      - datavolume:/var/lib/mysql
+#
+#  restful:
+#    build: .
+#    image: restful
+#    container_name: restful
+#    ports:
+#      - 8080:8080
+#    restart: on-failure
+#    environment:
+#      MYSQL_DATABASE_HOST: database
+#    depends_on:
+#      - database
+#    links:
+#      - database
+#
+#volumes:
+#  datavolume:
+#----------------------------------------------------
