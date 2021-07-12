@@ -8,8 +8,8 @@ services:
       - MYSQL_DATABASE=lankin
     volumes:
       - datavolume:/var/lib/mysql
-    ports:
-      - 8080:3306
+#    ports:
+#      - 8080:3306
     healthcheck:
       test: "exit 0"
 
@@ -17,6 +17,8 @@ services:
     build: .
     image: restful
     container_name: restful
+    ports:
+      - 8080:8080
     restart: on-failure
     environment:
       MYSQL_DATABASE_HOST: database
@@ -26,6 +28,7 @@ services:
 
 volumes:
   datavolume:
+
 
 #docker build -t restful .
 #docker-compose up --build
