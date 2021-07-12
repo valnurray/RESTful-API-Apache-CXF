@@ -3,7 +3,6 @@ services:
   database:
     image: mysql
     container_name: lankindb
-#    container_name: localhost:3306
     environment:
       - MYSQL_ROOT_PASSWORD=M1xV1n1l
       - MYSQL_DATABASE=lankin
@@ -31,6 +30,6 @@ volumes:
 #docker build -t restful .
 #docker-compose up --build
 #docker-compose down -v
-
+#  docker exec -it <container Id> <comand>
 #  curl -X POST -H 'Content-Type:application/json' http://localhost:8080/article -d '{"author":"author","title":"title","body":"body from docker"}'
 #  curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:8080/services

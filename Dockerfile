@@ -13,7 +13,7 @@ COPY --from=build /usr/app/target/restful-1.0-SNAPSHOT.jar /usr/app/restful.jar
 
 CMD ["java","-jar","/usr/app/restful.jar"]
 
-#---------------------------------------------------------------
+#--------c-------------------------------------------------------
 #docker build -t restful .
 
 #docker run restful
