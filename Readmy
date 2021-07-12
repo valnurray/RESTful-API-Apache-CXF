@@ -1,11 +1,1 @@
-docker network create restful-mysql
-docker container run --name lankin-db --network restful-mysql -e MYSQL_ROOT_PASSWORD=M1xV1n1l -e MYSQL_DATABASE=lankin -d mysql:8
-# docker container logs -f <container id>
-docker container logs -f 4b29354b85cdd3887df437bc07607489183477590728bac8981748a64eb13e33
-docker container exec -it 4b29354b85cdd3887df437bc07607489183477590728bac8981748a64eb13e33 bash
-
-docker image build -t restful .
-
-docker container run --network restful-mysql --name restful-container2 -p 8080:8080 -d restful
-
-5ad812aeeb2ee7fd33d6fd8b79576d407bf01eb9c5d58f34fce7b2233b371716 - container name
+docker-compose up --build
