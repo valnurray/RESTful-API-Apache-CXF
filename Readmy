@@ -5,3 +5,6 @@ docker-compose up --build -d
 stop:
 docker stop $(docker ps -aq)
 
+
+SWAGGER: http://localhost:8080/api-docs?url=/swagger.json
+
