@@ -29,15 +29,12 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 class ArticleServiceImplTest {
 
-
-
     private ArticleService articleService;
 
     @MockBean
     private ArticleRepository articleRepository;
 
     private ArticleMapper articleMapper;
-
 
     @BeforeEach
     void setup(){
@@ -122,7 +119,6 @@ class ArticleServiceImplTest {
     @Test
     @DisplayName("Test findById, update, delete with Exception")
     public void testGetArticleByIdUpdateArticleByIdDeleteArticleByIdThrowException() {
-
 //        // Setup our mock repository
         Article article = MockData.getFirstArticle();
 
