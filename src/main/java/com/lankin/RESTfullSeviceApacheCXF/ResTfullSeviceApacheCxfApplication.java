@@ -14,9 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EntityScan(basePackages = "com.lankin.RESTfullSeviceApacheCXF.model")
 @EnableJpaRepositories(basePackages = "com.lankin.RESTfullSeviceApacheCXF.repository")
 public class ResTfullSeviceApacheCxfApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(ResTfullSeviceApacheCxfApplication.class, args);
 	}
-
 }
