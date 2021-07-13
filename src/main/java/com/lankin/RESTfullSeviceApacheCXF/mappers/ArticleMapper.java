@@ -1,6 +1,5 @@
 package com.lankin.RESTfullSeviceApacheCXF.mappers;
 
-
 import com.lankin.RESTfullSeviceApacheCXF.model.Article;
 import com.lankin.RESTfullSeviceApacheCXF.service.api.models.request.ArticleRequest;
 import com.lankin.RESTfullSeviceApacheCXF.service.api.models.response.ArticleResponse;
@@ -8,7 +7,6 @@ import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
 import java.util.List;
-
 
 @Mapper(componentModel = "spring")
 public interface ArticleMapper {
