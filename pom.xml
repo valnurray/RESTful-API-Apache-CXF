@@ -102,7 +102,6 @@
 			<scope>provided</scope>
 		</dependency>
 
-
 		<!-- TESTING -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
@@ -116,7 +115,6 @@
 			<version>3.2.4</version>
 			<scope>test</scope>
 		</dependency>
-
 
 	</dependencies>
 
