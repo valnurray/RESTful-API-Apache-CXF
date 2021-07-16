@@ -21,7 +21,9 @@ public interface ArticleMapper {
 
     List<ArticleResponse> ArticleToArticleResponse(List<Article> all);
 
-    void updateArticleResponseFromArticleRequest(ArticleRequest articleRequest, @MappingTarget Article article);
+    void updateArticleFromArticleRequest(ArticleRequest articleRequest, @MappingTarget Article article);
+
+    Article updateArt(@MappingTarget Article article, ArticleRequest articleRequest);
 
     ArticleResponse ArticleRequestToArticleResponse (ArticleResponse articleResponse);
     ArticleRequest ArticleResponseToArticleRequest (ArticleResponse articleResponse);

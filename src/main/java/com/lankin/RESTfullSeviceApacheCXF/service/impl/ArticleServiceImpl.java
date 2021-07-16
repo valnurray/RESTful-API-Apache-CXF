@@ -55,8 +55,31 @@ public class ArticleServiceImpl implements ArticleService {
     public ArticleResponse updateArticleByID(long id, ArticleRequest articleRequest) {
         /* we need to check whether Article with given id is exist in DB or not */
         Article article = articleRepository.findById(id).orElseThrow(NotFoundArticleException::new);
-         articleMapper.updateArticleResponseFromArticleRequest(articleRequest, article);
-         articleRepository.save(article);
+
+        Article updatedArticle = new Article();
+
+        if(articleRequest.getTitle() != null) {
+            updatedArticle.setTitle(articleRequest.getTitle());
+        }else {
+            updatedArticle.setTitle(article.getTitle());
+        }
+
+        if(articleRequest.getAuthor() != null){
+            updatedArticle.setAuthor(articleRequest.getAuthor());
+        }else {
+            updatedArticle.setAuthor(article.getAuthor());
+        }
+
+        if(articleRequest.getBody() != null) {
+            updatedArticle.setBody(articleRequest.getBody());
+        }else {
+            updatedArticle.setBody(article.getBody());
+        }
+
+        articleRequest = articleMapper.ArticleToArticleRequest(updatedArticle);
+        updatedArticle = articleMapper.updateArt(article, articleRequest);
+        articleRepository.save(article);
         return articleMapper.ArticleToArticleResponse(article);
+
     }
 }
