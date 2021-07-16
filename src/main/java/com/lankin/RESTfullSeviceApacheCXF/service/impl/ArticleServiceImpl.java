@@ -8,6 +8,8 @@ import com.lankin.RESTfullSeviceApacheCXF.service.api.ArticleService;
 import com.lankin.RESTfullSeviceApacheCXF.service.api.models.request.ArticleRequest;
 import com.lankin.RESTfullSeviceApacheCXF.service.api.models.response.ArticleResponse;
 import lombok.Data;
+
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Data
@@ -41,13 +43,13 @@ public class ArticleServiceImpl implements ArticleService {
 
     /*@DELETE*/
     @Override
-    public ArticleResponse deleteArticleByID(long id) {
+    public Response deleteArticleByID(long id) {
         /* we need to check whether Article with given id is exist in DB or not */
         articleRepository.findById(id).orElseThrow(NotFoundArticleException::new);
         /*Deleting*/
         ArticleResponse articleResponse = articleMapper.ArticleToArticleResponse(articleRepository.findById(id).get());
         articleRepository.deleteById(id);
-        return articleResponse;
+        return Response.status(204).build();
     }
 
     /*@PUT*/

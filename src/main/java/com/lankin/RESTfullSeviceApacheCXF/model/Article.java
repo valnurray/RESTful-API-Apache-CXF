@@ -46,5 +46,4 @@ public class Article {
             = "body must be less then 255 characters")
     private String body;
 
-
 }
