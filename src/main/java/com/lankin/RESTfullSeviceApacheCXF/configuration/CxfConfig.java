@@ -27,7 +27,8 @@ public class CxfConfig {
     private Bus bus;
 
     @Bean
-    public Server rsServer(ArticleRepository articleRepository, ArticleMapper articleMapper, AuthorRepository authorRepository, AuthorMapper authorMapper) {
+    public Server rsServer(ArticleRepository articleRepository, ArticleMapper articleMapper,
+                           AuthorRepository authorRepository, AuthorMapper authorMapper) {
 
         final JAXRSServerFactoryBean endpoint = new JAXRSServerFactoryBean();
         endpoint.setProvider(new JacksonJsonProvider());

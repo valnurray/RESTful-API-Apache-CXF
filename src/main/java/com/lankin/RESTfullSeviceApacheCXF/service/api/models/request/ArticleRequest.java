@@ -10,6 +10,7 @@ public class ArticleRequest {
     private String title;
 
     private Author author;
+//    private String author;
 
     private String body;
 

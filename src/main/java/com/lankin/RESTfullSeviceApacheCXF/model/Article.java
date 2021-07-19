@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,11 +41,8 @@ public class Article {
     @Size(max = 120, message = "title must be less then 120 characters")
     private String title;
 
-//    @Column(name = "author")
-//    @NotNull
-//    @Size(max = 75, message = "author must be less then 75 characters")
-    @ManyToOne(optional=false, cascade= CascadeType.ALL)
-    @JoinColumn(name="author_id")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "author_id")
     private Author author;
 
     @Column(name = "body")

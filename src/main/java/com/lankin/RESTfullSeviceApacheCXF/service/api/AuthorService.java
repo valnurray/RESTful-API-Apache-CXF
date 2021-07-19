@@ -32,27 +32,27 @@ public interface AuthorService {
 
 
     @GET
-    @ApiOperation(value = "Find all Articles", response = Author.class)
+    @ApiOperation(value = "Find all Authors", response = Author.class)
     @Produces(MediaType.APPLICATION_JSON)
     List<AuthorResponse> getAuthorResponses() ;
 
     @GET
     @Path("{id}")
-    @ApiOperation(value = "Find Article by passed ID")
+    @ApiOperation(value = "Find Authors by passed ID")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     AuthorResponse getAuthorResponse(@PathParam("id") long id);
 
     @DELETE
     @Path("{id}")
-    @ApiOperation(value = "Deletes an exist Article with passed ID")
+    @ApiOperation(value = "Deletes an exist Authors with passed ID")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     Response deleteAuthorByID(@PathParam("id") long id);
 
     @PUT
     @Path("{id}")
-    @ApiOperation(value = "Updates an exist Article with passed Article fields")
+    @ApiOperation(value = "Updates an exist Authors with passed Article fields")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     AuthorResponse updateAuthorByID(@PathParam("id") long id, AuthorRequest authorRequest);

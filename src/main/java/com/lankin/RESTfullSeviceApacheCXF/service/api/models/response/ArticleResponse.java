@@ -12,6 +12,7 @@ public class ArticleResponse {
     private String title;
 
     private Author author;
+//    private String author;
 
     private String body;
 }

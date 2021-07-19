@@ -27,7 +27,6 @@ public class AuthorServiceImpl implements AuthorService {
         ));
     }
 
-
     /*@GET*/
     @Override
     public List<AuthorResponse> getAuthorResponses() {
