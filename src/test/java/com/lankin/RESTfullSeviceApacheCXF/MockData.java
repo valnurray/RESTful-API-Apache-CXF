@@ -3,6 +3,7 @@ package com.lankin.RESTfullSeviceApacheCXF;
 import com.lankin.RESTfullSeviceApacheCXF.model.Article;
 import com.lankin.RESTfullSeviceApacheCXF.model.Author;
 import com.lankin.RESTfullSeviceApacheCXF.service.api.models.request.ArticleRequest;
+import com.lankin.RESTfullSeviceApacheCXF.service.api.models.request.AuthorRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,6 +102,56 @@ public class MockData {
         article.setBody("uefa");
 
         return  author;
+    }
+
+    public static Author getSecondAuthor(){
+        Article article = new Article();
+        Article article2 = new Article();
+        List<Article> articleList = new ArrayList<>();
+        articleList.add(article);
+        articleList.add(article2);
+
+
+        Author author = new Author();
+        author.setId(2L);
+        author.setFirstName("Jonny");
+        author.setLastName("Mnemonic");
+        author.setDescription("some text");
+        author.setArticles(articleList);
+
+        article.setId(1L);
+        article.setAuthor(author);
+        article.setTitle("Mad");
+        article.setBody("get mad");
+
+        article.setId(2L);
+        article.setAuthor(author);
+        article.setTitle("About soccer");
+        article.setBody("uefa");
+
+        return  author;
+    }
+
+    public static AuthorRequest getFirstAuthorRequest(){
+        Article article = new Article();
+        Article article2 = new Article();
+        List<Article> articleList = new ArrayList<>();
+        articleList.add(article);
+        articleList.add(article2);
+
+        Author author = new Author();
+        author.setId(1L);
+        author.setFirstName("Jonny");
+        author.setLastName("Mnemonic");
+        author.setDescription("some text");
+        author.setArticles(articleList);
+
+        AuthorRequest authorRequest = new AuthorRequest();
+        authorRequest.setFirstName(author.getFirstName());
+        authorRequest.setLastName(author.getLastName());
+        authorRequest.setDescription(author.getDescription());
+        authorRequest.setArticles(author.getArticles());
+        return authorRequest;
     }
 
 }
