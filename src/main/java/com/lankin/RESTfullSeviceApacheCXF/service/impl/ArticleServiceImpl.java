@@ -60,28 +60,40 @@ public class ArticleServiceImpl implements ArticleService {
 
         Article updatedArticle = new Article();
 
-        if(articleRequest.getTitle() != null) {
-            updatedArticle.setTitle(articleRequest.getTitle());
-        }else {
-            updatedArticle.setTitle(article.getTitle());
-        }
+        checkingTitleForNull(articleRequest, article, updatedArticle);
 
-        if(articleRequest.getAuthor() != null){
-            updatedArticle.setAuthor(articleRequest.getAuthor());
-        }else {
-            updatedArticle.setAuthor(article.getAuthor());
-        }
+        checkingAuthorForNull(articleRequest, article, updatedArticle);
 
-        if(articleRequest.getBody() != null) {
-            updatedArticle.setBody(articleRequest.getBody());
-        }else {
-            updatedArticle.setBody(article.getBody());
-        }
+        checkingBodyForNull(articleRequest, article, updatedArticle);
 
         articleRequest = articleMapper.ArticleToArticleRequest(updatedArticle);
         updatedArticle = articleMapper.updateArt(article, articleRequest);
         articleRepository.save(article);
         return articleMapper.ArticleToArticleResponse(article);
 
+    }
+
+    private void checkingBodyForNull(ArticleRequest articleRequest, Article article, Article updatedArticle) {
+        if(articleRequest.getBody() != null) {
+            updatedArticle.setBody(articleRequest.getBody());
+        }else {
+            updatedArticle.setBody(article.getBody());
+        }
+    }
+
+    private void checkingAuthorForNull(ArticleRequest articleRequest, Article article, Article updatedArticle) {
+        if(articleRequest.getAuthor() != null){
+            updatedArticle.setAuthor(articleRequest.getAuthor());
+        }else {
+            updatedArticle.setAuthor(article.getAuthor());
+        }
+    }
+
+    private void checkingTitleForNull(ArticleRequest articleRequest, Article article, Article updatedArticle) {
+        if(articleRequest.getTitle() != null) {
+            updatedArticle.setTitle(articleRequest.getTitle());
+        }else {
+            updatedArticle.setTitle(article.getTitle());
+        }
     }
 }

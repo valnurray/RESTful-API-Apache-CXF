@@ -59,35 +59,51 @@ public class AuthorServiceImpl implements AuthorService {
         Author author = authorRepository.findById(id).orElseThrow(NotFoundEntityException::new);
         Author updatedAuthor = new Author();
 
-        if(authorRequest.getFirstName() != null){
-            updatedAuthor.setFirstName(authorRequest.getFirstName());
-        }else{
-            updatedAuthor.setFirstName(author.getFirstName());
-        }
+        checkingFirstNameForNull(authorRequest, author, updatedAuthor);
 
-        if(authorRequest.getLastName() != null){
-            updatedAuthor.setLastName(authorRequest.getLastName());
-        }else{
-            updatedAuthor.setLastName(author.getLastName());
-        }
+        checkingLastNameForNull(authorRequest, author, updatedAuthor);
 
-        if(authorRequest.getDescription() != null){
-            updatedAuthor.setDescription(authorRequest.getDescription());
-        }else{
-            updatedAuthor.setDescription(author.getDescription());
-        }
+        checkingDescriptionForNull(authorRequest, author, updatedAuthor);
 
-        if(authorRequest.getArticles() != null){
-            updatedAuthor.setArticles(authorRequest.getArticles());
-        }else {
-            updatedAuthor.setArticles(author.getArticles());
-        }
+        checkingArticlesForNull(authorRequest, author, updatedAuthor);
 
         authorRequest = authorMapper.AuthorRequestToAuthor(updatedAuthor);
         updatedAuthor = authorMapper.updateAuthor(author, authorRequest);
         authorRepository.save(author);
         return authorMapper.AuthorResponseToAuthor(author);
 
+    }
+
+    private void checkingArticlesForNull(AuthorRequest authorRequest, Author author, Author updatedAuthor) {
+        if(authorRequest.getArticles() != null){
+            updatedAuthor.setArticles(authorRequest.getArticles());
+        }else {
+            updatedAuthor.setArticles(author.getArticles());
+        }
+    }
+
+    private void checkingDescriptionForNull(AuthorRequest authorRequest, Author author, Author updatedAuthor) {
+        if(authorRequest.getDescription() != null){
+            updatedAuthor.setDescription(authorRequest.getDescription());
+        }else{
+            updatedAuthor.setDescription(author.getDescription());
+        }
+    }
+
+    private void checkingLastNameForNull(AuthorRequest authorRequest, Author author, Author updatedAuthor) {
+        if(authorRequest.getLastName() != null){
+            updatedAuthor.setLastName(authorRequest.getLastName());
+        }else{
+            updatedAuthor.setLastName(author.getLastName());
+        }
+    }
+
+    private void checkingFirstNameForNull(AuthorRequest authorRequest, Author author, Author updatedAuthor) {
+        if(authorRequest.getFirstName() != null){
+            updatedAuthor.setFirstName(authorRequest.getFirstName());
+        }else{
+            updatedAuthor.setFirstName(author.getFirstName());
+        }
     }
 
 }
