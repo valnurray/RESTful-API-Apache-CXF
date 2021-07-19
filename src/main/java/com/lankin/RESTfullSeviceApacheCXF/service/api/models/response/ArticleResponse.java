@@ -1,5 +1,6 @@
 package com.lankin.RESTfullSeviceApacheCXF.service.api.models.response;
 
+import com.lankin.RESTfullSeviceApacheCXF.model.Author;
 import lombok.Data;
 import javax.persistence.Id;
 
@@ -10,7 +11,7 @@ public class ArticleResponse {
 
     private String title;
 
-    private String author;
+    private Author author;
 
     private String body;
 }

@@ -1,6 +1,6 @@
 package com.lankin.RESTfullSeviceApacheCXF.service.impl;
 
-import com.lankin.RESTfullSeviceApacheCXF.exception.NotFoundArticleException;
+import com.lankin.RESTfullSeviceApacheCXF.exception.NotFoundEntityException;
 import com.lankin.RESTfullSeviceApacheCXF.mappers.ArticleMapper;
 import com.lankin.RESTfullSeviceApacheCXF.model.Article;
 import com.lankin.RESTfullSeviceApacheCXF.repository.ArticleRepository;
@@ -36,7 +36,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public ArticleResponse getArticleResponse(long id) {
         /* we need to check whether Article with given id is exist in DB or not */
-        articleRepository.findById(id).orElseThrow(NotFoundArticleException::new);
+        articleRepository.findById(id).orElseThrow(NotFoundEntityException::new);
         /*Getting*/
         return articleMapper.ArticleToArticleResponse(articleRepository.findById(id).get());
     }
@@ -45,7 +45,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public Response deleteArticleByID(long id) {
         /* we need to check whether Article with given id is exist in DB or not */
-        articleRepository.findById(id).orElseThrow(NotFoundArticleException::new);
+        articleRepository.findById(id).orElseThrow(NotFoundEntityException::new);
         /*Deleting*/
         ArticleResponse articleResponse = articleMapper.ArticleToArticleResponse(articleRepository.findById(id).get());
         articleRepository.deleteById(id);
@@ -56,7 +56,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public ArticleResponse updateArticleByID(long id, ArticleRequest articleRequest) {
         /* we need to check whether Article with given id is exist in DB or not */
-        Article article = articleRepository.findById(id).orElseThrow(NotFoundArticleException::new);
+        Article article = articleRepository.findById(id).orElseThrow(NotFoundEntityException::new);
 
         Article updatedArticle = new Article();
 

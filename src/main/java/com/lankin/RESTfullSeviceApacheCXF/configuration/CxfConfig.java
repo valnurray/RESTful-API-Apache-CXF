@@ -2,8 +2,11 @@ package com.lankin.RESTfullSeviceApacheCXF.configuration;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.lankin.RESTfullSeviceApacheCXF.mappers.ArticleMapper;
+import com.lankin.RESTfullSeviceApacheCXF.mappers.AuthorMapper;
 import com.lankin.RESTfullSeviceApacheCXF.repository.ArticleRepository;
+import com.lankin.RESTfullSeviceApacheCXF.repository.AuthorRepository;
 import com.lankin.RESTfullSeviceApacheCXF.service.impl.ArticleServiceImpl;
+import com.lankin.RESTfullSeviceApacheCXF.service.impl.AuthorServiceImpl;
 import org.apache.cxf.Bus;
 import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
@@ -24,16 +27,28 @@ public class CxfConfig {
     private Bus bus;
 
     @Bean
-    public Server rsServer(ArticleRepository articleRepository, ArticleMapper articleMapper) {
+    public Server rsServer(ArticleRepository articleRepository, ArticleMapper articleMapper, AuthorRepository authorRepository, AuthorMapper authorMapper) {
 
         final JAXRSServerFactoryBean endpoint = new JAXRSServerFactoryBean();
         endpoint.setProvider(new JacksonJsonProvider());
         endpoint.setBus(bus);
         endpoint.setAddress("/");
-        endpoint.setServiceBeans(Arrays.<Object>asList(articleServiceImpl(articleRepository, articleMapper)));
+        endpoint.setServiceBeans(Arrays.<Object>asList(articleServiceImpl(articleRepository, articleMapper),
+                authorServiceImpl(authorRepository, authorMapper)));
         endpoint.setFeatures(Arrays.asList(new Swagger2Feature()));
         return endpoint.create();
     }
+
+    @Bean
+    public AuthorServiceImpl authorServiceImpl(AuthorRepository authorRepository, AuthorMapper authorMapper){
+        return new AuthorServiceImpl(authorRepository, authorMapper);
+    }
+
+    @Bean
+    public AuthorMapper authorMapper(){
+        return Mappers.getMapper(AuthorMapper.class);
+    }
+
 
     @Bean
     public ArticleServiceImpl articleServiceImpl(ArticleRepository articleRepository, ArticleMapper articleMapper){

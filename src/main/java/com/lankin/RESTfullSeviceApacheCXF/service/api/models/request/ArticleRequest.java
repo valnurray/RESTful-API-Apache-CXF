@@ -1,5 +1,6 @@
 package com.lankin.RESTfullSeviceApacheCXF.service.api.models.request;
 
+import com.lankin.RESTfullSeviceApacheCXF.model.Author;
 import lombok.Data;
 
 
@@ -8,7 +9,7 @@ public class ArticleRequest {
 
     private String title;
 
-    private String author;
+    private Author author;
 
     private String body;
 
