@@ -43,7 +43,7 @@ public class Author {
     @Size(max = 255, message = "Description must be less then 120 characters")
     private String Description;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL,fetch = FetchType.EAGER,orphanRemoval = true)
     private List<Article> articles;
 
 }
