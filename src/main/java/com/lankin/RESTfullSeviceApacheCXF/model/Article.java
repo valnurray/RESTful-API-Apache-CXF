@@ -1,5 +1,7 @@
 package com.lankin.RESTfullSeviceApacheCXF.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.CascadeType;
@@ -15,6 +17,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Objects;
 
 /**
  * Class {@code Article} in package {@code com.lankin.RESTfullSeviceApacheCXF.model}
@@ -27,7 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Data
 @Entity
-@Table(name = "article")
+@Table(name = "article", schema = "lankin")
 @XmlRootElement
 public class Article {
 
@@ -43,6 +46,7 @@ public class Article {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "author_id")
+    @JsonManagedReference
     private Author author;
 
     @Column(name = "body")

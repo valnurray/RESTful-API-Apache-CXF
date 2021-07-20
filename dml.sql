@@ -1,9 +1,27 @@
-INSERT article (id, author, title, body)
-VALUES
-(1, 'Herbert George Wells', 'The War of the Worlds', 'body'),
-(2, 'Frank Herbert', 'DUNE', 'body'),
-(3, 'Clifford Donald Simak', 'A Choice of Gods', 'body'),
-(4, 'Isaac Asimov', 'The Bicentennial Man', 'body'),
-(5, 'For DELETE', 'DELETE OR UPDATE THIS VALUE', 'body');
+-- INSERT article (id, author, title, body)
+-- VALUES
+-- (1, 'Herbert George Wells', 'The War of the Worlds', 'body'),
+-- (2, 'Frank Herbert', 'DUNE', 'body'),
+-- (3, 'Clifford Donald Simak', 'A Choice of Gods', 'body'),
+-- (4, 'Isaac Asimov', 'The Bicentennial Man', 'body'),
+-- (5, 'For DELETE', 'DELETE OR UPDATE THIS VALUE', 'body');
 
-SELECT * FROM article;
+-- INSERT author (author_id, `description`,first_name, last_name)
+-- VALUES
+-- (1, 'Herbert',  'description', 'George Wells'),
+-- (2, 'Frank', 'description' , 'Herbert'),
+-- (3, 'Clifford', 'description' ,'Donald Simak'),
+-- (4, 'Isaac', 'description','Asimov'),
+-- (5, 'For DELETE', 'description','DELETE OR UPDATE THIS VALUE'),
+-- (6, 'Workbrench', 'Workbrench', 'Workbrench');
+--
+-- INSERT article (id, body, title, author_id)
+-- VALUES
+-- (1, 'The War of the Worlds', 'body', 1),
+-- (2, 'DUNE', 'body', 2),
+-- (3, 'A Choice of Gods', 'body', 3),
+-- (4, 'The Bicentennial Man', 'body', 4),
+-- (5, 'DELETE OR UPDATE THIS VALUE', 'body',5),
+-- (6, 'Workbrench', 'Workbrench', 1);
+--
+-- SELECT * FROM article;
