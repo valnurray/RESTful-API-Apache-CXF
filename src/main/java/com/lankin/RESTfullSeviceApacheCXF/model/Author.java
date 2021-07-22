@@ -2,7 +2,15 @@ package com.lankin.RESTfullSeviceApacheCXF.model;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
+import org.springframework.web.servlet.View;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -33,20 +41,25 @@ public class Author {
     @Column(name = "first_name")
     @NotNull
     @Size(max = 55, message = "firstName must be less then 55 characters")
+    @JsonIgnore
     private String FirstName;
 
     @Column(name = "last_name")
     @NotNull
     @Size(max = 55, message = "lastName must be less then 55 characters")
+    @JsonIgnore
     private String LastName;
 
     @Column(name = "description")
     @NotNull
     @Size(max = 255, message = "Description must be less then 120 characters")
+    @JsonIgnore
     private String Description;
 
-    @OneToMany(mappedBy = "author",cascade = CascadeType.ALL,fetch = FetchType.EAGER,orphanRemoval = true)
-    @JsonBackReference
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+//    @JsonBackReference
+    @JsonIgnore
     private List<Article> articles;
+
 
 }
