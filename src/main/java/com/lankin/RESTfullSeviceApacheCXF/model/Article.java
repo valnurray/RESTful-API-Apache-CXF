@@ -54,6 +54,7 @@ public class Article {
     @Column(name = "body")
     @Size(max = 255, message
             = "body must be less then 255 characters")
+
     private String body;
 
 }

@@ -5,6 +5,7 @@ import com.lankin.RESTfullSeviceApacheCXF.service.api.models.request.ArticleRequ
 import com.lankin.RESTfullSeviceApacheCXF.service.api.models.response.ArticleResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -22,6 +23,7 @@ import java.util.List;
 @Api(value = "/article") // Enables Swagger Documentation
 public interface ArticleService {
 
+
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -31,7 +33,8 @@ public interface ArticleService {
     @GET
     @ApiOperation(value = "Find all Articles", response = Article.class)
     @Produces(MediaType.APPLICATION_JSON)
-    List<ArticleResponse> getArticleResponses() ;
+    List<ArticleResponse> getArticleResponses();
+
 
     @GET
     @Path("{id}")

@@ -8,12 +8,16 @@ import com.lankin.RESTfullSeviceApacheCXF.service.api.AuthorService;
 import com.lankin.RESTfullSeviceApacheCXF.service.api.models.request.AuthorRequest;
 import com.lankin.RESTfullSeviceApacheCXF.service.api.models.response.AuthorResponse;
 import lombok.Data;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Data
 public class AuthorServiceImpl implements AuthorService {
+
+    private static final Logger LOG = LogManager.getLogger(AuthorServiceImpl.class);
 
     private final AuthorRepository authorRepository;
 
@@ -22,6 +26,7 @@ public class AuthorServiceImpl implements AuthorService {
     /*@POST*/
     @Override
     public AuthorResponse createAuthorResponse(AuthorRequest authorRequest) {
+        LOG.info("created AuthorResponse");
         return authorMapper.AuthorResponseToAuthor(authorRepository.save(
                 authorMapper.AuthorToAAuthorRequest(authorRequest)
         ));
@@ -30,12 +35,14 @@ public class AuthorServiceImpl implements AuthorService {
     /*@GET*/
     @Override
     public List<AuthorResponse> getAuthorResponses() {
+        LOG.info("get List<AuthorResponse>");
        return authorMapper.AuthorToAuthorResponse(authorRepository.findAll());
     }
 
     /*@GET*/
     @Override
     public AuthorResponse getAuthorResponse(long id) {
+        LOG.info("get AuthorResponse by id: " + id);
         /* we need to check whether Article with given id is exist in DB or not */
         authorRepository.findById(id).orElseThrow(NotFoundEntityException::new);
         /*Getting*/
@@ -46,6 +53,7 @@ public class AuthorServiceImpl implements AuthorService {
     /*@DELETE*/
     @Override
     public Response deleteAuthorByID(long id) {
+        LOG.info("delete Response deleteAuthorByID by id: " + id);
         /* we need to check whether Article with given id is exist in DB or not */
         authorRepository.findById(id).orElseThrow(NotFoundEntityException::new);
         /*Deleting*/
@@ -56,6 +64,8 @@ public class AuthorServiceImpl implements AuthorService {
     /*@PUT*/
     @Override
     public AuthorResponse updateAuthorByID(long id, AuthorRequest authorRequest) {
+        LOG.info("putAuthorResponse (update) by id: " + id);
+
         Author author = authorRepository.findById(id).orElseThrow(NotFoundEntityException::new);
         Author updatedAuthor = new Author();
 

@@ -47,7 +47,7 @@ public class Author {
     @Column(name = "last_name")
     @NotNull
     @Size(max = 55, message = "lastName must be less then 55 characters")
-    @JsonIgnore
+//    @JsonIgnore
     private String LastName;
 
     @Column(name = "description")

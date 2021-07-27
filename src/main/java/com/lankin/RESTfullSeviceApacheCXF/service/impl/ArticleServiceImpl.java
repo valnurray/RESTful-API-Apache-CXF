@@ -8,12 +8,19 @@ import com.lankin.RESTfullSeviceApacheCXF.service.api.ArticleService;
 import com.lankin.RESTfullSeviceApacheCXF.service.api.models.request.ArticleRequest;
 import com.lankin.RESTfullSeviceApacheCXF.service.api.models.response.ArticleResponse;
 import lombok.Data;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Data
 public class ArticleServiceImpl implements ArticleService {
+
+    /**
+     * Create log4j2 logger
+     * */
+    private static final Logger LOG = LogManager.getLogger(ArticleServiceImpl.class);
 
     private final ArticleRepository articleRepository;
 
@@ -22,19 +29,23 @@ public class ArticleServiceImpl implements ArticleService {
     /*@POST*/
     @Override
     public ArticleResponse createArticleResponse(ArticleRequest articleRequest) {
+        LOG.info("created ArticleResponse");
         return articleMapper.ArticleToArticleResponse(articleRepository.save(
                 articleMapper.ArticleRequestToArticle(articleRequest)));
+
     }
 
     /*@GET*/
     @Override
     public List<ArticleResponse> getArticleResponses() {
+        LOG.info("get List<ArticleResponse");
         return articleMapper.ArticleToArticleResponse(articleRepository.findAll());
     }
 
     /*@GET*/
     @Override
     public ArticleResponse getArticleResponse(long id) {
+        LOG.info("get ArticleResponse by id: " + id);
         /* we need to check whether Article with given id is exist in DB or not */
         articleRepository.findById(id).orElseThrow(NotFoundEntityException::new);
         /*Getting*/
@@ -44,6 +55,7 @@ public class ArticleServiceImpl implements ArticleService {
     /*@DELETE*/
     @Override
     public Response deleteArticleByID(long id) {
+        LOG.info("delete Response by id: " +id);
         /* we need to check whether Article with given id is exist in DB or not */
         articleRepository.findById(id).orElseThrow(NotFoundEntityException::new);
         /*Deleting*/
@@ -55,6 +67,7 @@ public class ArticleServiceImpl implements ArticleService {
     /*@PUT*/
     @Override
     public ArticleResponse updateArticleByID(long id, ArticleRequest articleRequest) {
+        LOG.info("put Response by id:" + id + "(update)");
         /* we need to check whether Article with given id is exist in DB or not */
         Article article = articleRepository.findById(id).orElseThrow(NotFoundEntityException::new);
 
