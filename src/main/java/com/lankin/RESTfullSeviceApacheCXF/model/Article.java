@@ -1,9 +1,8 @@
 package com.lankin.RESTfullSeviceApacheCXF.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 
 import javax.persistence.CascadeType;
@@ -19,7 +18,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.Objects;
 
 /**
  * Class {@code Article} in package {@code com.lankin.RESTfullSeviceApacheCXF.model}
@@ -34,6 +32,9 @@ import java.util.Objects;
 @Entity
 @Table(name = "article", schema = "lankin")
 @XmlRootElement
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Article {
 
     @Id
@@ -48,7 +49,8 @@ public class Article {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "author_id")
-    @JsonManagedReference
+//    @JsonManagedReference
+    @JsonIgnore
     private Author author;
 
     @Column(name = "body")

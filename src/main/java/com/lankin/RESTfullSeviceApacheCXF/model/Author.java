@@ -1,16 +1,10 @@
 package com.lankin.RESTfullSeviceApacheCXF.model;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonView;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.MapperFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
-import org.springframework.web.servlet.View;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,12 +19,14 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
-import java.util.Objects;
 
 @Data
 @Entity
 @Table(name = "author", schema = "lankin")
 @XmlRootElement
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Author {
 
     @Id
@@ -57,7 +53,8 @@ public class Author {
     private String Description;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-//    @JsonBackReference
+//    @JsonBackReference()
+//    @DefaultValue(value = "empty")
     @JsonIgnore
     private List<Article> articles;
 
