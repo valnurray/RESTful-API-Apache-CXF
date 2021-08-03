@@ -52,7 +52,10 @@ public class Author {
     @JsonIgnore
     private String Description;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "author",
+//            cascade = CascadeType.ALL,
+            cascade = CascadeType.MERGE,
+            fetch = FetchType.EAGER, orphanRemoval = true)
 //    @JsonBackReference()
 //    @DefaultValue(value = "empty")
     @JsonIgnore
